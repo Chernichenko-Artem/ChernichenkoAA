@@ -1,0 +1,87 @@
+def print_board(board):
+    """Вывод игрового поля в консоль"""
+    print("\n  0   1   2")
+    for i, row in enumerate(board):
+        print(f"{i} " + " | ".join(row))
+        if i < 2:
+            print("  -----------")
+    print()
+
+
+def check_winner(board):
+    """Проверка победителя"""
+    # Строки
+    for row in board:
+        if row[0] == row[1] == row[2] != " ":
+            return row[0]
+    
+    # Столбцы
+    for col in range(3):
+        if board[0][col] == board[1][col] == board[2][col] != " ":
+            return board[0][col]
+    
+    # Диагонали
+    if board[0][0] == board[1][1] == board[2][2] != " ":
+        return board[0][0]
+    if board[0][2] == board[1][1] == board[2][0] != " ":
+        return board[0][2]
+    
+    return None
+
+
+def is_valid_move(board, row, col):
+    """Проверка корректности хода"""
+    return 0 <= row <= 2 and 0 <= col <= 2 and board[row][col] == " "
+
+
+def is_board_full(board):
+    """Проверка, заполнено ли поле"""
+    for row in board:
+        if " " in row:
+            return False
+    return True
+
+
+def get_player_move(board, player):
+    """Запрос хода у игрока"""
+    while True:
+        try:
+            move = input(f"Игрок {player}, ваш ход (строка и столбец через пробел): ")
+            row, col = map(int, move.split())
+            if is_valid_move(board, row, col):
+                return row, col
+            else:
+                print("Некорректный ход. Попробуйте снова.")
+        except (ValueError, IndexError):
+            print("Введите два числа от 0 до 2 через пробел.")
+
+
+def play_game():
+    """Основная игровая логика"""
+    board = [[" " for _ in range(3)] for _ in range(3)]
+    players = ["X", "O"]
+    current_player = 0
+    
+    print("Добро пожаловать в игру 'Крестики-нолики 3x3'!")
+    print_board(board)
+    
+    while True:
+        player = players[current_player]
+        row, col = get_player_move(board, player)
+        board[row][col] = player
+        print_board(board)
+        
+        winner = check_winner(board)
+        if winner:
+            print(f"Поздравляем! Игрок {winner} победил!")
+            break
+        
+        if is_board_full(board):
+            print("Ничья!")
+            break
+        
+        current_player = (current_player + 1) % 2
+
+
+if __name__ == "__main__":
+    play_game()
