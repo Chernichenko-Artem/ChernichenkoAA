@@ -1,0 +1,24 @@
+[2026-04-25T13:15:10.952+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-04-25T13:15:10.981+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_pipeline.fetch_historical scheduled__2026-04-25T13:10:00+00:00 [queued]>
+[2026-04-25T13:15:10.985+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_pipeline.fetch_historical scheduled__2026-04-25T13:10:00+00:00 [queued]>
+[2026-04-25T13:15:10.986+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-04-25T13:15:10.994+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): fetch_historical> on 2026-04-25 13:10:00+00:00
+[2026-04-25T13:15:11.000+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=686) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-04-25T13:15:11.000+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'weather_pipeline', 'fetch_historical', 'scheduled__2026-04-25T13:10:00+00:00', '--job-id', '109', '--raw', '--subdir', 'DAGS_FOLDER/weather_dag.py', '--cfg-path', '/tmp/tmpcgqqv6cv']
+[2026-04-25T13:15:11.001+0000] {standard_task_runner.py:63} INFO - Started process 689 to run task
+[2026-04-25T13:15:11.001+0000] {standard_task_runner.py:91} INFO - Job 109: Subtask fetch_historical
+[2026-04-25T13:15:11.018+0000] {task_command.py:426} INFO - Running <TaskInstance: weather_pipeline.fetch_historical scheduled__2026-04-25T13:10:00+00:00 [running]> on host 3ddf978cbafa
+[2026-04-25T13:15:11.054+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='student' AIRFLOW_CTX_DAG_ID='weather_pipeline' AIRFLOW_CTX_TASK_ID='fetch_historical' AIRFLOW_CTX_EXECUTION_DATE='2026-04-25T13:10:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-25T13:10:00+00:00'
+[2026-04-25T13:15:11.055+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-04-25T13:15:11.065+0000] {logging_mixin.py:188} INFO - Fetching historical weather data...
+[2026-04-25T13:15:11.065+0000] {logging_mixin.py:188} INFO - Processing historical data for London...
+[2026-04-25T13:15:11.678+0000] {logging_mixin.py:188} INFO - Processing historical data for Tokyo...
+[2026-04-25T13:15:12.167+0000] {logging_mixin.py:188} INFO - Processing historical data for New York...
+[2026-04-25T13:15:12.666+0000] {logging_mixin.py:188} INFO - Processing historical data for Moscow...
+[2026-04-25T13:15:13.696+0000] {logging_mixin.py:188} INFO - ✅ Historical data saved and deduplicated.
+[2026-04-25T13:15:13.702+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-04-25T13:15:13.702+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-04-25T13:15:13.708+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=weather_pipeline, task_id=fetch_historical, run_id=scheduled__2026-04-25T13:10:00+00:00, execution_date=20260425T131000, start_date=20260425T131510, end_date=20260425T131513
+[2026-04-25T13:15:13.764+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-04-25T13:15:13.770+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-04-25T13:15:13.770+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
